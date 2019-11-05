@@ -10,7 +10,9 @@ const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'dev';
 app.use(morgan(morganSetting));
 app.use(helmet());
 app.use(cors());
-
+app.get('/', (req, res) => {
+  res.send('ok');
+});
 app.use(function validateBearerToken(req, res, next) {
   const bearerToken = req.get('Authorization') ? req.get('Authorization') : '';
   const apiToken = process.env.API_TOKEN;
